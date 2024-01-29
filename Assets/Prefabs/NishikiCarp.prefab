@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 61792346514218832, guid: 27363eeca9650fc4ea1be9b21eb360c2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a38585a29d763148a5aa56d97e6dbc6, type: 2}
+    - target: {fileID: 61792346514218832, guid: 27363eeca9650fc4ea1be9b21eb360c2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 41030f854fa8abe40abdb727b9c56039, type: 2}
     - target: {fileID: 427526533010463372, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -165,7 +175,7 @@ PrefabInstance:
     - target: {fileID: 6330295098181218567, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_Name
-      value: Nishiki Variant
+      value: NishikiCarp
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
@@ -327,6 +337,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2295649395622452583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480670222071825719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7dbdb7bea024154e8c87e6b08cb6bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _power: 12.29
+  _deleteTime: 10
 --- !u!1 &5134515526524928207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3365955437668136191, guid: 27363eeca9650fc4ea1be9b21eb360c2,

@@ -1,23 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FeedPitcher : MonoBehaviour
 {
-    /// <summary>’e‚ÌƒvƒŒƒnƒu</summary>
+    /// <summary>å¼¾ã®ãƒ—ãƒ¬ãƒãƒ–</summary>
     [SerializeField] Camera _camera;
-    /// <summary>’e‚ÌƒvƒŒƒnƒu</summary>
+    /// <summary>å¼¾ã®ãƒ—ãƒ¬ãƒãƒ–</summary>
     [SerializeField] GameObject _bullet;
-    /// <summary>ƒŒƒ“ƒY‚©‚ç‚ÌƒIƒtƒZƒbƒg’l</summary>
+    /// <summary>ãƒ¬ãƒ³ã‚ºã‹ã‚‰ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤</summary>
     [SerializeField] float _offset;
 
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            //@ƒJƒƒ‰‚ÌƒŒƒ“ƒY‚Ì’†S‚ğ‹‚ß‚é
+            //ã€€ã‚«ãƒ¡ãƒ©ã®ãƒ¬ãƒ³ã‚ºã®ä¸­å¿ƒã‚’æ±‚ã‚ã‚‹
             var centerOfLens = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, Camera.main.nearClipPlane + _offset));
-            //@ƒJƒƒ‰‚ÌƒŒƒ“ƒY‚Ì’†S‚©‚ç’e‚ğ”ò‚Î‚·
+            //ã€€ã‚«ãƒ¡ãƒ©ã®ãƒ¬ãƒ³ã‚ºã®ä¸­å¿ƒã‹ã‚‰å¼¾ã‚’é£›ã°ã™
             var bulletObj = Instantiate(_bullet, centerOfLens, Quaternion.identity) as GameObject;
         }
     }

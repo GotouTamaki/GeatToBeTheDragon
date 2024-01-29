@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -11,30 +10,25 @@ public class FeedMoveController : MonoBehaviour
 
     private void Awake()
     {
-        //@Rigidbody‚ğæ“¾‚µ‘¬“x‚ğ0‚É‰Šú‰»
+        //ã€€Rigidbodyã‚’å–å¾—ã—é€Ÿåº¦ã‚’0ã«åˆæœŸåŒ–
         _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
     {
 
-        //@ƒJƒƒ‰‚©‚çƒNƒŠƒbƒN‚µ‚½ˆÊ’u‚ÉƒŒƒC‚ğ”ò‚Î‚·
+        //ã€€ã‚«ãƒ¡ãƒ©ã‹ã‚‰ã‚¯ãƒªãƒƒã‚¯ã—ãŸä½ç½®ã«ãƒ¬ã‚¤ã‚’é£›ã°ã™
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //@’e‚ª‘¶İ‚µ‚Ä‚¢‚ê‚ÎƒŒƒC‚Ì•ûŒü‚É—Í‚ğ‰Á‚¦‚é
+        //ã€€å¼¾ãŒå­˜åœ¨ã—ã¦ã„ã‚Œã°ãƒ¬ã‚¤ã®æ–¹å‘ã«åŠ›ã‚’åŠ ãˆã‚‹
         _rigidbody.AddForce(_ray.direction * _power, ForceMode.Impulse);
 
-        //@’e‚ğ”­Ë‚µ‚Ä‚©‚çw’è‚µ‚½ŠÔ‚ªŒo‰ß‚µ‚½‚ç©“®‚Åíœ
+        //ã€€å¼¾ã‚’ç™ºå°„ã—ã¦ã‹ã‚‰æŒ‡å®šã—ãŸæ™‚é–“ãŒçµŒéã—ãŸã‚‰è‡ªå‹•ã§å‰Šé™¤
         Destroy(this.gameObject, _deleteTime);
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Enemyƒ^ƒO‚ª‚Â‚¢‚½“G‚ÉÕ“Ë‚µ‚½‚ç©g‚Æ“G‚ğíœ
+        // Enemyã‚¿ã‚°ãŒã¤ã„ãŸæ•µã«è¡çªã—ãŸã‚‰è‡ªèº«ã¨æ•µã‚’å‰Šé™¤
         if (collision.gameObject.tag == ("Carp"))
         {
             this.gameObject.SetActive(false);
