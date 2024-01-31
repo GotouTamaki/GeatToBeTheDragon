@@ -16,7 +16,6 @@ public class FeedMoveController : MonoBehaviour
 
     private void OnEnable()
     {
-
         //　カメラからクリックした位置にレイを飛ばす
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //　弾が存在していればレイの方向に力を加える
