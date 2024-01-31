@@ -5,6 +5,7 @@ Shader "Custom/WaterShader"
         [MainTexture] _BaseMap("Texture", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
+        _PerlinNoise ("PerlinNoise", Range(0.0, 10.0)) = 0.02
     }
     SubShader
     {
@@ -57,6 +58,7 @@ Shader "Custom/WaterShader"
                 float4 _BaseMap_ST;
                 half4 _BaseColor;
                 half _F0;
+                half _PerlinNoise;
             CBUFFER_END
 
             struct Attributes
@@ -109,13 +111,16 @@ Shader "Custom/WaterShader"
 
                 VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
                 output.positionCS = vertexInput.positionCS;
-                //float noise = PerlinNoise(vertexInput.positionCS);
                 output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
                 output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);
                 output.viewDirWS = GetWorldSpaceViewDir(vertexInput.positionWS);
 
                 VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS);
                 output.normalWS = normalInput.normalWS;
+
+                float noise = PerlinNoise(output.positionCS);
+                output.positionCS.y += (sin(noise * _PerlinNoise * vertexInput.positionCS.y + _Time * 100) / 2);
+                //output.positionCS = output.positionCS;
 
                 return output;
             }
