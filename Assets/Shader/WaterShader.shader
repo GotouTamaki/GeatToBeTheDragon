@@ -5,7 +5,7 @@ Shader "Custom/WaterShader"
         [MainTexture] _BaseMap("Texture", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
-        _PerlinNoise ("PerlinNoise", Range(0.0, 10.0)) = 0.02
+        _PerlinNoise ("PerlinNoise", Range(0.0, 100.0)) = 0.02
     }
     SubShader
     {
@@ -119,7 +119,7 @@ Shader "Custom/WaterShader"
                 output.normalWS = normalInput.normalWS;
 
                 float noise = PerlinNoise(output.positionCS);
-                output.positionCS.y += (sin(noise * _PerlinNoise * vertexInput.positionCS.y + _Time * 100) / 2);
+                output.positionCS.y += sin(noise * _PerlinNoise * vertexInput.positionCS.y + _Time * 100);
                 //output.positionCS = output.positionCS;
 
                 return output;
