@@ -85,17 +85,17 @@ PrefabInstance:
     - target: {fileID: 3847579860078911373, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.026
       objectReference: {fileID: 0}
     - target: {fileID: 3847579860078911373, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7430631
       objectReference: {fileID: 0}
     - target: {fileID: 3847579860078911373, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.6692214
       objectReference: {fileID: 0}
     - target: {fileID: 3847579860078911373, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
@@ -110,7 +110,7 @@ PrefabInstance:
     - target: {fileID: 3847579860078911373, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -84.014
       objectReference: {fileID: 0}
     - target: {fileID: 3847579860078911373, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
@@ -125,12 +125,12 @@ PrefabInstance:
     - target: {fileID: 4480670222071825719, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
       propertyPath: m_Name
-      value: Nishiki Variant Variant
+      value: GoldCarp
       objectReference: {fileID: 0}
     - target: {fileID: 4480670222071825719, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Stage
       objectReference: {fileID: 0}
     - target: {fileID: 5544530799994714805, guid: cfe08b7156642be488ce7a3b4315682c,
         type: 3}

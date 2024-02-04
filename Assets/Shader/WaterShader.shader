@@ -4,9 +4,11 @@ Shader "Custom/WaterShader"
     {
         [MainTexture] _BaseMap("Texture", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
+        _ScrollSpeed ("ScrollSpeed", Range(0.0, 10.0)) = 1
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
         _SpecPower ("Specular Power", Range(0,60)) = 3
-        _PerlinNoise ("PerlinNoise", Range(0.0, 100.0)) = 0.02
+        _PerlinNoise ("PerlinNoise", Range(0.0, 300.0)) = 0.02
+        _NoiseHight ("NoiseHight", Range(0.0, 3.0)) = 0.02
     }
     SubShader
     {
@@ -58,9 +60,11 @@ Shader "Custom/WaterShader"
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
                 half4 _BaseColor;
+                half _ScrollSpeed;
                 half _F0;
                 half _SpecPower;
                 half _PerlinNoise;
+                half _NoiseHight;
             CBUFFER_END
 
             struct Attributes
@@ -85,7 +89,7 @@ Shader "Custom/WaterShader"
             half2 Random2(half2 st)
             {
                 st = half2(dot(st, half2(127.1, 311.7)),
-                           dot(st, half2(269.5, 183.3)));
+                               dot(st, half2(269.5, 183.3)));
                 return -1.0 + 2.0 * frac(sin(st) * 43758.5453123);
             }
 
@@ -101,8 +105,8 @@ Shader "Custom/WaterShader"
                 float v11 = Random2(p + half2(1, 1));
 
                 return lerp(lerp(dot(v00, f - half2(0, 0)), dot(v10, f - half2(1, 0)), u.x),
-                        lerp(dot(v01, f - half2(0, 1)), dot(v11, f - half2(1, 1)), u.x),
-                        u.y) + 0.5f;
+                                    lerp(dot(v01, f - half2(0, 1)), dot(v11, f - half2(1, 1)), u.x),
+                                    u.y) + 0.5f;
             }
 
             Varyings vert(Attributes input)
@@ -120,8 +124,8 @@ Shader "Custom/WaterShader"
                 VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS);
                 output.normalWS = normalInput.normalWS;
 
-                float noise = PerlinNoise(output.positionCS);
-                output.positionCS.y += sin(noise * _PerlinNoise * vertexInput.positionCS.y + _Time * 100);
+                float noise = PerlinNoise(output.uv);
+                output.positionCS.y += sin(noise * _PerlinNoise * input.positionOS + _Time * 100) * _NoiseHight;
                 //output.positionCS = output.positionCS;
 
                 return output;
@@ -132,7 +136,7 @@ Shader "Custom/WaterShader"
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
                 float4 shadowCoord = TransformWorldToShadowCoord(input.positionCS);
-                half2 uv = input.uv;
+                half2 uv = input.uv - (_Time.x * _ScrollSpeed);
                 half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
                 half3 color = texColor.rgb * _BaseColor.rgb;
                 half alpha = texColor.a * _BaseColor.a;

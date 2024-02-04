@@ -19,6 +19,6 @@ public class DutherController : MonoBehaviour
     {
         _distanse = Vector3.Distance(
             _mainCamera.gameObject.transform.position, this.gameObject.transform.position);
-        _material.SetFloat("DitherLevel", _distanse);
+        _material.SetFloat("_DitherLevel", _distanse);
     }
 }

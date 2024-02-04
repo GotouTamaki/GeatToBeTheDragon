@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GoldCarp_URP
+  m_Name: M_PlayerGoldCarpURP
   m_Shader: {fileID: 4800000, guid: e1a0b3bb68499e940a4ed8eb43f44804, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:

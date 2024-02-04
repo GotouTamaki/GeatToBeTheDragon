@@ -177,6 +177,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NishikiCarp
       objectReference: {fileID: 0}
+    - target: {fileID: 6330295098181218567, guid: 27363eeca9650fc4ea1be9b21eb360c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Stage
+      objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_RootOrder
@@ -185,17 +190,17 @@ PrefabInstance:
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
@@ -210,17 +215,17 @@ PrefabInstance:
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.026
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7430621
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.6692225
       objectReference: {fileID: 0}
     - target: {fileID: 6670509956313951165, guid: 27363eeca9650fc4ea1be9b21eb360c2,
         type: 3}
@@ -349,7 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7dbdb7bea024154e8c87e6b08cb6bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 12.29
   _deleteTime: 10
 --- !u!1 &5134515526524928207 stripped
 GameObject:
