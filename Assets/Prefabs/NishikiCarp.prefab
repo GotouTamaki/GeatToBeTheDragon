@@ -355,6 +355,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deleteTime: 10
+--- !u!114 &4490723446857215715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4480670222071825719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25c6f404b30cf694fa0f8c78d12def3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 7578634334994606944}
+  _maxPatternOffsetX: 1
+  _maxPatternOffsetY: 1
+  _maxPatternScale: 4.5
 --- !u!1 &5134515526524928207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3365955437668136191, guid: 27363eeca9650fc4ea1be9b21eb360c2,
@@ -393,6 +409,12 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.33
   m_Center: {x: 0, y: 0.59, z: -0.21}
+--- !u!137 &7578634334994606944 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 61792346514218832, guid: 27363eeca9650fc4ea1be9b21eb360c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 7635624512540636208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7854786447049918540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 357753191335033980, guid: 27363eeca9650fc4ea1be9b21eb360c2,

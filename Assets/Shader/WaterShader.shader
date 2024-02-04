@@ -4,6 +4,7 @@ Shader "Custom/WaterShader"
     {
         [MainTexture] _BaseMap("Texture", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
+        _PatternScale ("PatternScale", Range(0.0, 10.0)) = 1
         _ScrollSpeed ("ScrollSpeed", Range(0.0, 10.0)) = 1
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
         _SpecPower ("Specular Power", Range(0,60)) = 3
@@ -60,6 +61,7 @@ Shader "Custom/WaterShader"
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
                 half4 _BaseColor;
+                half _PatternScale;
                 half _ScrollSpeed;
                 half _F0;
                 half _SpecPower;
@@ -118,6 +120,7 @@ Shader "Custom/WaterShader"
                 VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
                 output.positionCS = vertexInput.positionCS;
                 output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
+                output.uv *= _PatternScale;
                 output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);
                 output.viewDirWS = GetWorldSpaceViewDir(vertexInput.positionWS);
 

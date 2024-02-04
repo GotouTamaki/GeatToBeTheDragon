@@ -38,7 +38,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 41dfc68d4901f924ea85dc9e7dcfb5dc, type: 3}
+        m_Texture: {fileID: 2800000, guid: 75aabcc8e4dcc3e4390e8d57654d9d56, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -133,15 +133,16 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseHight: 1.63
+    - _NoiseHight: 1.85
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _Parallax: 0.005
+    - _PatternScale: 1.5
     - _PerlinNoise: 152
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ScloreSpeed: 0.02
-    - _ScrollSpeed: 5
+    - _ScrollSpeed: 4.5
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecPower: 33.9
@@ -151,7 +152,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7058824, g: 0.8516028, b: 1, a: 0.47843137}
+    - _BaseColor: {r: 0.40566033, g: 0.6659551, b: 1, a: 0.47843137}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Displace: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

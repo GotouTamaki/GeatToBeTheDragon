@@ -92,7 +92,7 @@ public class MapControler : MonoBehaviour
 
     public void SpownNewMap()
     {
-        Vector3 pos = new Vector3(0, _startPosition.position.y - _maps[0].transform.position.y, 0);
+        Vector3 pos = new Vector3(0, _startPosition.position.y, 0);
         var go = Instantiate(_mapPrefabs[Random.Range(0, _mapPrefabs.Length)]);
         go.transform.position = pos;
 
