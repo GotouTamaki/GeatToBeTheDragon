@@ -1,12 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MapControler : MonoBehaviour
 {
-    [FormerlySerializedAs("_mapPrefab")]
     [Header("マップのプレハブ")]
     [SerializeField] private GameObject[] _mapPrefabs;
     
