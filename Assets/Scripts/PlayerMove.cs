@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -30,12 +31,33 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Stage"))
         {
+            _rigidbody.WakeUp();
             _canMove = false;
             _rigidbody.useGravity = true;
+        }
+        else
+        {
+            _rigidbody.Sleep();
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (!other.gameObject.CompareTag("Stage"))
+        {
+            _rigidbody.WakeUp();
+        }
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        if (!other.gameObject.CompareTag("Stage") && _canMove)
+        {
+            _rigidbody.Sleep();
         }
     }
 }
