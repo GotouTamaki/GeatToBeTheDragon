@@ -154,6 +154,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Opacity: 1
+    - _OutlineWidth: 0.01
     - _Parallax: 0.005
     - _PatternOffsetX: 0
     - _PatternOffsetY: 0
@@ -171,9 +172,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CustomBaseColor: {r: 0.78113204, g: 0.78113204, b: 0.44067636, a: 1}
-    - _CustomEmissionColor: {r: 0.98833734, g: 0.98833734, b: 0.8279266, a: 1}
+    - _CustomEmissionColor: {r: 7.905884, g: 7.905884, b: 6.62273, a: 1}
     - _CustomPatternColor1: {r: 0.7803922, g: 0.7803922, b: 0.43921572, a: 1}
     - _CustomPatternColor2: {r: 0.7803922, g: 0.7803922, b: 0.43921572, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

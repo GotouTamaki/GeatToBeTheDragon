@@ -25,6 +25,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords:
   - _CUSTOMIZECOLOR_ON
+  - _CUSTOMIZEEMISSION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -134,7 +135,7 @@ Material:
     - _CustomMetallic: 0
     - _CustomRoughness: 1
     - _CustomizeColor: 1
-    - _CustomizeEmission: 0
+    - _CustomizeEmission: 1
     - _CustomizeMetallic: 0
     - _CustomizeRoughness: 0
     - _Cutoff: 0.5
