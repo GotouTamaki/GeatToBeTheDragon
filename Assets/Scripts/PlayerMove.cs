@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     Vector3 _dir = default;
     
     bool _canMove = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +30,14 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Stage"))
+        if (collision.gameObject.CompareTag("Stage") && _canMove)
         {
             _rigidbody.WakeUp();
             _canMove = false;
             _rigidbody.useGravity = true;
+            AudioManager.Instance.PlaySE(SESoundData.SE.Collision);
+            TimeManager.Instance.SetIsDuringMeasurement(false);
+            SceneChangeAndFadeManager.Instance.SceneChangeAndFade("ResultScene");
         }
         else
         {

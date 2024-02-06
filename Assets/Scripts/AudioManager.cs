@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -48,8 +51,7 @@ public class AudioManager : MonoBehaviour
         _bgmAudioSource.volume = data.volume * _bgmMasterVolume * _masterVolume;
         _bgmAudioSource.Play();
     }
-
-
+    
     public void PlaySE(SESoundData.SE se)
     {
         SESoundData data = _seSoundData.Find(data => data.se == se);
@@ -110,6 +112,7 @@ public class SESoundData
     public enum SE
     {
         Select,
+        Splash,
         Collision,
     }
 
