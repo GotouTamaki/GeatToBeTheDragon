@@ -5,7 +5,7 @@ Shader "Custom/WaterShader"
         [MainTexture] _BaseMap("Texture", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
         _PatternScale ("PatternScale", Range(0.0, 10.0)) = 1
-        _ScrollSpeed ("ScrollSpeed", Range(0.0, 10.0)) = 1
+        _ScrollSpeed ("ScrollSpeed", Range(0.0, 100.0)) = 1
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
         _SpecPower ("Specular Power", Range(0,60)) = 3
         _PerlinNoise ("PerlinNoise", Range(0.0, 300.0)) = 0.02
@@ -139,7 +139,8 @@ Shader "Custom/WaterShader"
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
                 float4 shadowCoord = TransformWorldToShadowCoord(input.positionCS);
-                half2 uv = input.uv - (_Time.x * _ScrollSpeed);
+                half2 uv = input.uv;
+                uv.y -= (_Time.x * _ScrollSpeed);
                 half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
                 half3 color = texColor.rgb * _BaseColor.rgb;
                 half alpha = texColor.a * _BaseColor.a;

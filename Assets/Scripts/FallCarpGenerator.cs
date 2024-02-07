@@ -30,7 +30,7 @@ public class FallCarpGenerator : MonoBehaviour
     {
         if (_timer > _interval)
         {
-            _spawnPosi = new Vector3(Random.Range(_spawnNegaRange, _spawnPosiRange), this.transform.position.y, 0);
+            _spawnPosi = new Vector3(Random.Range(_spawnNegaRange, _spawnPosiRange), this.transform.position.y, this.transform.position.z);
             int num = Choose(weights);
             Instantiate(_fallObjects[num], _spawnPosi, _fallObjects[num].transform.rotation);
             _timer = 0;
