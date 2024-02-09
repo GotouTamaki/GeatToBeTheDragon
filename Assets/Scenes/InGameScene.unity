@@ -1090,9 +1090,19 @@ PrefabInstance:
       propertyPath: _mainCamera
       value: 
       objectReference: {fileID: 1940522552}
+    - target: {fileID: 447001800012828308, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 447001800426276494, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
         type: 3}
       propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 447001800807231034, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3697816739664499610, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
@@ -1154,6 +1164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCarp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7402622635733275354, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8503797914994284694, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
         type: 3}
