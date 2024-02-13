@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 3631946881135031756}
   - component: {fileID: 3631946882204877618}
   - component: {fileID: 3631946882204877624}
+  - component: {fileID: 1430334777}
   m_Layer: 5
   m_Name: SettingCanvas
   m_TagString: Setting
@@ -757,7 +758,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 600, y: 800}
+  m_ReferenceResolution: {x: 540, y: 960}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -856,6 +857,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e03f9716d74e8c049a0b379b262a7be6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1430334777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631946881135031751}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecb69eda36f24e4f8e21a4a63fa6b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3631946881196283537
