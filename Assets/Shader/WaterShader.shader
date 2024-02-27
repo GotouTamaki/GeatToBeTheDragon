@@ -3,11 +3,13 @@ Shader "Custom/WaterShader"
     Properties
     {
         [MainTexture] _BaseMap("Texture", 2D) = "white" {}
+        _SubMap("Texture", 2D) = "white" {}
+        _Blend("Blend",Range (0, 1)) = 1
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
         _PatternScale ("PatternScale", Range(0.0, 10.0)) = 1
         _ScrollSpeed ("ScrollSpeed", Range(0.0, 100.0)) = 1
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
-        _SpecPower ("Specular Power", Range(0,60)) = 3
+        _SpecPower ("Specular Power", Range(0,100)) = 3
         _PerlinNoise ("PerlinNoise", Range(0.0, 300.0)) = 0.02
         _NoiseHight ("NoiseHight", Range(0.0, 3.0)) = 0.02
     }
@@ -56,11 +58,15 @@ Shader "Custom/WaterShader"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 
             TEXTURE2D(_BaseMap);
+            TEXTURE2D(_SubMap);
             SAMPLER(sampler_BaseMap);
+            SAMPLER(sampler_SubMap);
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseMap_ST;
+                float4 _SubMap_ST;
                 half4 _BaseColor;
+                float _Blend;
                 half _PatternScale;
                 half _ScrollSpeed;
                 half _F0;
@@ -91,7 +97,7 @@ Shader "Custom/WaterShader"
             half2 Random2(half2 st)
             {
                 st = half2(dot(st, half2(127.1, 311.7)),
-                               dot(st, half2(269.5, 183.3)));
+                           dot(st, half2(269.5, 183.3)));
                 return -1.0 + 2.0 * frac(sin(st) * 43758.5453123);
             }
 
@@ -107,8 +113,8 @@ Shader "Custom/WaterShader"
                 float v11 = Random2(p + half2(1, 1));
 
                 return lerp(lerp(dot(v00, f - half2(0, 0)), dot(v10, f - half2(1, 0)), u.x),
-                                    lerp(dot(v01, f - half2(0, 1)), dot(v11, f - half2(1, 1)), u.x),
-                                    u.y) + 0.5f;
+                        lerp(dot(v01, f - half2(0, 1)), dot(v11, f - half2(1, 1)), u.x),
+                        u.y) + 0.5f;
             }
 
             Varyings vert(Attributes input)
@@ -140,7 +146,10 @@ Shader "Custom/WaterShader"
 
                 float4 shadowCoord = TransformWorldToShadowCoord(input.positionCS);
                 half2 uv = input.uv;
-                uv.y -= (_Time.x * _ScrollSpeed);
+    //             half4 base = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+                // half4 sub = SAMPLE_TEXTURE2D(_SubMap, sampler_SubMap, uv);
+                // uv = base.rgb + _BaseColor.rgb + sub.rgb;
+                uv.g -= (_Time.x * _ScrollSpeed);
                 half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
                 half3 color = texColor.rgb * _BaseColor.rgb;
                 half alpha = texColor.a * _BaseColor.a;
