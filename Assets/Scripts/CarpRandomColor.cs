@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CarpRamdomColor : MonoBehaviour
+public class CarpRandomColor : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
     [SerializeField, Range(0, 1.0f)] float _maxPatternOffsetX = 1;
