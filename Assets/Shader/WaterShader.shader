@@ -6,6 +6,7 @@ Shader "Custom/WaterShader"
         _SubMap("Texture", 2D) = "white" {}
         _Blend("Blend",Range (0, 1)) = 1
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
+        [MainColor] _SubColor("Color", Color) = (1, 1, 1, 1)
         _PatternScale ("PatternScale", Range(0.0, 10.0)) = 1
         _ScrollSpeed ("ScrollSpeed", Range(0.0, 100.0)) = 1
         _F0 ("F0", Range(0.0, 1.0)) = 0.02
@@ -66,6 +67,7 @@ Shader "Custom/WaterShader"
                 float4 _BaseMap_ST;
                 float4 _SubMap_ST;
                 half4 _BaseColor;
+                half4 _SubColor;
                 float _Blend;
                 half _PatternScale;
                 half _ScrollSpeed;
@@ -113,8 +115,21 @@ Shader "Custom/WaterShader"
                 float v11 = Random2(p + half2(1, 1));
 
                 return lerp(lerp(dot(v00, f - half2(0, 0)), dot(v10, f - half2(1, 0)), u.x),
-                        lerp(dot(v01, f - half2(0, 1)), dot(v11, f - half2(1, 1)), u.x),
-                        u.y) + 0.5f;
+                            lerp(dot(v01, f - half2(0, 1)), dot(v11, f - half2(1, 1)), u.x),
+                            u.y) + 0.5f;
+            }
+
+            half4 BlendTexture(float2 uv)
+            {
+                half4 baseColor = _BaseColor;
+                half4 subColor = _SubColor;
+
+                half4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+                half4 subMap = SAMPLE_TEXTURE2D(_SubMap, sampler_SubMap, uv);
+
+                half4 color = baseColor * baseMap * (1 - _Blend) + subColor * subMap * _Blend;
+
+                return color;
             }
 
             Varyings vert(Attributes input)
@@ -146,11 +161,12 @@ Shader "Custom/WaterShader"
 
                 float4 shadowCoord = TransformWorldToShadowCoord(input.positionCS);
                 half2 uv = input.uv;
-    //             half4 base = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+                //             half4 base = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
                 // half4 sub = SAMPLE_TEXTURE2D(_SubMap, sampler_SubMap, uv);
                 // uv = base.rgb + _BaseColor.rgb + sub.rgb;
                 uv.g -= (_Time.x * _ScrollSpeed);
-                half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+                //half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
+                half4 texColor = BlendTexture(uv);
                 half3 color = texColor.rgb * _BaseColor.rgb;
                 half alpha = texColor.a * _BaseColor.a;
 
