@@ -187,6 +187,11 @@ Shader "Custom/WaterShader"
             }
             ENDHLSL
         }
+
+//        Pass
+//         {
+//             
+//         }
     }
     FallBack "Transparent/Diffuse"
 }
