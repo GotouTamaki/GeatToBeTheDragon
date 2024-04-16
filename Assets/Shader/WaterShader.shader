@@ -2,17 +2,17 @@ Shader "Custom/WaterShader"
 {
     Properties
     {
-        [MainTexture] _BaseMap("Texture", 2D) = "white" {}
-        _SubMap("Texture", 2D) = "white" {}
-        _Blend("Blend",Range (0, 1)) = 1
-        [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
-        [MainColor] _SubColor("Color", Color) = (1, 1, 1, 1)
+        [MainTexture] _BaseMap("MainTexture", 2D) = "white" {}
+        _SubMap("SubTexture", 2D) = "white" {}
+        _Blend("Blend",Range (0, 1)) = 0
+        [MainColor] _BaseColor("BaseColor", Color) = (1, 1, 1, 1)
+        [MainColor] _SubColor("SubColor", Color) = (1, 1, 1, 1)
         _PatternScale ("PatternScale", Range(0.0, 10.0)) = 1
         _ScrollSpeed ("ScrollSpeed", Range(0.0, 100.0)) = 1
-        _F0 ("F0", Range(0.0, 1.0)) = 0.02
-        _SpecPower ("Specular Power", Range(0,100)) = 3
         _PerlinNoise ("PerlinNoise", Range(0.0, 300.0)) = 0.02
         _NoiseHight ("NoiseHight", Range(0.0, 3.0)) = 0.02
+        _F0 ("F0", Range(0.0, 1.0)) = 0.02
+        _SpecPower ("Specular Power", Range(0,100)) = 3
     }
     SubShader
     {
