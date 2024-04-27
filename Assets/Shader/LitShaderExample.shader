@@ -170,8 +170,8 @@ Shader "Custom/CustomLitShader"
                 VertexNormalInputs normalInputs = GetVertexNormalInputs(input.normalOS, input.tangentOS);
                 output.normalWS = normalInputs.normalWS;
                 #ifdef _NORMALMAP
-					real sign = IN.tangentOS.w * GetOddNegativeScale();
-					OUT.tangentWS = half4(normalInputs.tangentWS.xyz, sign);
+					real sign = input.tangentOS.w * GetOddNegativeScale();
+					output.tangentWS = half4(normalInputs.tangentWS.xyz, sign);
                 #endif
 
                 half3 vertexLight = VertexLighting(positionInputs.positionWS, normalInputs.normalWS);
@@ -199,9 +199,9 @@ Shader "Custom/CustomLitShader"
 
                 half3 viewDirWS = SafeNormalize(input.viewDirWS);
                 #ifdef _NORMALMAP
-					float sgn = IN.tangentWS.w; // +1 または -1 のいずれかでなければなりません。
-					float3 bitangent = sgn * cross(IN.normalWS.xyz, IN.tangentWS.xyz);
-					inputData.normalWS = TransformTangentToWorld(normalTS, half3x3(IN.tangentWS.xyz, bitangent.xyz, IN.normalWS.xyz));
+					float sgn = input.tangentWS.w; // +1 または -1 のいずれかでなければなりません。
+					float3 bitangent = sgn * cross(input.normalWS.xyz, input.tangentWS.xyz);
+					inputData.normalWS = TransformTangentToWorld(normalTS, half3x3(input.tangentWS.xyz, bitangent.xyz, input.normalWS.xyz));
                 #else
                 inputData.normalWS = input.normalWS;
                 #endif
@@ -241,8 +241,6 @@ Shader "Custom/CustomLitShader"
                 surfaceData.normalTS = SampleNormal(input.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
                 surfaceData.emission = SampleEmission(input.uv, _EmissionColor.rgb,
                                                       TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
-                // surfaceData.emission = surfaceData.albedo + half3(surfaceData.albedo(input.uv).rgb) * half3(
-                //     _EmissionColor.rgb);
 
                 surfaceData.occlusion = 1;
 
