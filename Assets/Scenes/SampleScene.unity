@@ -1746,7 +1746,7 @@ MonoBehaviour:
   - {fileID: 1129420457753202212, guid: b9cd02bc9340d524c8e8089b8cce025a, type: 3}
   - {fileID: 4685099770117915057, guid: d1690d7c9ab0b2843b26cae1f5d3b572, type: 3}
   _startPosition: {fileID: 592279173}
-  _firstGoalPos: {fileID: 97196145}
+  _firstGoalPosition: {fileID: 0}
   _firstMaps:
   - {fileID: 78489229}
   - {fileID: 871519560}
@@ -2338,7 +2338,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9789e6bcc5e24754aa33152105bf63cc, type: 2}
+      objectReference: {fileID: 2100000, guid: 162d01bb96aaaf94f8a5a2ad72629bf7, type: 2}
     - target: {fileID: 8503797914994284694, guid: 2d3943eddd963d14cb7bd5a34b8f5f52,
         type: 3}
       propertyPath: m_LocalRotation.w
