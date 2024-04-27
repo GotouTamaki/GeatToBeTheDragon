@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Custom_LitShaderExample
+  m_Name: Custom_CustomLitShader
   m_Shader: {fileID: 4800000, guid: 033a58902b70a9e4989319e6c0799153, type: 3}
   m_ValidKeywords:
   - _OUTLINE
