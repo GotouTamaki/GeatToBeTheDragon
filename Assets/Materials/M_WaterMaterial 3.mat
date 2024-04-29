@@ -150,7 +150,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ScloreSpeed: 0.02
-    - _ScrollSpeed: 55
+    - _ScrollSpeed: 23.9
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecPower: 60
@@ -160,7 +160,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.73018867, g: 0.8489057, b: 1, a: 0.9098039}
+    - _BaseColor: {r: 0.36078426, g: 0.69803923, b: 0.7294118, a: 0.8509804}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Displace: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

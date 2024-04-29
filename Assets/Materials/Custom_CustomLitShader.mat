@@ -121,7 +121,7 @@ Material:
     - _NoiseHight: 0.02
     - _OcclusionStrength: 1
     - _OutLineThickness: 16.7
-    - _OutlineWidth: 24
+    - _OutlineWidth: 8.9
     - _Parallax: 0.005
     - _PatternScale: 1
     - _PerlinNoise: 0.02
@@ -141,7 +141,7 @@ Material:
     - _BaseColor: {r: 0.7433963, g: 0.7433963, b: 0.7433963, a: 1}
     - _Color: {r: 0.39215684, g: 0.39215684, b: 0.39215684, a: 1}
     - _CustomColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.21132088, g: 0.21132088, b: 0.21132088, a: 0}
+    - _EmissionColor: {r: 2.1865058, g: 1.5261321, b: 0.25990528, a: 0}
     - _OutLineColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SubColor: {r: 1, g: 1, b: 1, a: 1}
