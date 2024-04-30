@@ -479,7 +479,7 @@ MonoBehaviour:
   - {fileID: 1129420457753202212, guid: b9cd02bc9340d524c8e8089b8cce025a, type: 3}
   - {fileID: 4685099770117915057, guid: d1690d7c9ab0b2843b26cae1f5d3b572, type: 3}
   _startPosition: {fileID: 886046596}
-  _firstGoalPos: {fileID: 466000353}
+  _firstGoalPosition: {fileID: 466000353}
   _firstMaps:
   - {fileID: 1345617255}
   - {fileID: 1682764655}
