@@ -120,7 +120,7 @@ Material:
     - _NoiseHight: 0.02
     - _OcclusionStrength: 1
     - _OutLineThickness: 16.7
-    - _OutlineWidth: 8.9
+    - _OutlineWidth: 50.7
     - _Parallax: 0.005
     - _PatternScale: 1
     - _PerlinNoise: 0.02

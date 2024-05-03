@@ -455,8 +455,8 @@ Shader "Custom/CustomLitShader"
 
             Varyings vert(Attributes v)
             {
-                #ifdef _OUTLINE
                 Varyings OUT;
+                //#ifdef _OUTLINE
 
                 VertexNormalInputs vertexNormalInput = GetVertexNormalInputs(v.normalOS, v.tangentOS);
 
@@ -468,15 +468,14 @@ Shader "Custom/CustomLitShader"
 
                 OUT.positionSS = ComputeScreenPos(OUT.positionCS);
 
+                //#endif
                 return OUT;
-                #endif
-
             }
 
             half4 frag(Varyings IN): SV_Target
             {
-                #ifdef _OUTLINE
                 float4 col = _OutLineColor;
+
 
                 // スクリーン座標
                 float2 screenPos = IN.positionSS.xy / IN.positionSS.w;
@@ -489,9 +488,11 @@ Shader "Custom/CustomLitShader"
                 float dither = pattern[ditherUV_x, ditherUV_y];
 
                 // 閾値が0以下なら描画しない
+                #ifdef _OUTLINE
                 clip(dither - _DitherLevel);
                 return col;
                 #else
+                clip(dither - 16);
                 return 0;
                 #endif
             }
