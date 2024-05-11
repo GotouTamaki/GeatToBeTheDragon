@@ -32,10 +32,10 @@ Material:
     m_Floats:
     - _Blend: 0
     - _F0: 0.02
-    - _NoiseHight: 0
+    - _NoiseHight: 0.7
     - _PatternScale: 1
-    - _PerlinNoise: 0
-    - _ScrollSpeed: 58.4
+    - _PerlinNoise: 66
+    - _ScrollSpeed: 7.7
     - _SpecPower: 27.8
     m_Colors:
     - _BaseColor: {r: 0.28150225, g: 0.7207546, b: 0.70525163, a: 1}
