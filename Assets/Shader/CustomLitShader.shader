@@ -3,9 +3,11 @@ Shader "Custom/CustomLitShader"
     Properties
     {
         _BaseMap ("Base Texture", 2D) = "white" {}
-        _BaseColor ("Color", Color) = (0, 0.66, 0.73, 1)
-        _DitherLevel("DitherLevel", Range(0, 16)) = 0
-        _Smoothness ("Smoothness", Float) = 0.5
+        _BaseColor ("Base Color", Color) = (255, 255, 255, 1)
+        _ShadowColor ("Shadow Color", Color) = (0, 0, 0, 1)
+        _ShadowStrength ("Shadow Strength", Range(0, 1)) = 1
+        _Smoothness ("Smoothness", Range(0, 1)) = 0.5
+        _DitherLevel("Dither Level", Range(0, 16)) = 0
 
         [Toggle(_ALPHATEST_ON)] _EnableAlphaTest("Enable Alpha Cutoff", Float) = 0.0
         _Cutoff ("Alpha Cutoff", Float) = 0.5
@@ -19,8 +21,8 @@ Shader "Custom/CustomLitShader"
         [HDR] _EmissionColor ("Emission Color", Color) = (0, 0, 0, 0)
 
         [Toggle(_OUTLINE)] _EnableOutLine("Enable OutLine", Float) = 0.0
-        _OutLineColor ("OutLineColor", Color) = (0, 0, 0, 1)
-        _OutlineWidth ("OutlineWidth", Range(0, 100)) = 0
+        _OutLineColor ("OutLine Color", Color) = (0, 0, 0, 1)
+        _OutlineWidth ("Outline Width", Range(0, 100)) = 0
     }
     SubShader
     {
@@ -35,6 +37,8 @@ Shader "Custom/CustomLitShader"
         CBUFFER_START(UnityPerMaterial)
             float4 _BaseMap_ST;
             float4 _BaseColor;
+            float4 _ShadowColor;
+            float _ShadowStrength;
             float _BumpScale;
             float4 _EmissionColor;
             float _Smoothness;
@@ -45,7 +49,7 @@ Shader "Custom/CustomLitShader"
 
         Pass
         {
-            Name "Example"
+            Name "Main"
             Tags
             {
                 "LightMode"="UniversalForward"
@@ -237,7 +241,7 @@ Shader "Custom/CustomLitShader"
                 // 簡単にするために、メタリック/スペキュラー マップまたはオクルージョン マップはサポートしていません。
                 // その例については、https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl を参照してください。
 
-                surfaceData.smoothness = 0.5;
+                surfaceData.smoothness = _Smoothness;
                 surfaceData.normalTS = SampleNormal(input.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
                 surfaceData.emission = SampleEmission(input.uv, _EmissionColor.rgb,
                                                       TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
@@ -245,6 +249,31 @@ Shader "Custom/CustomLitShader"
                 surfaceData.occlusion = 1;
 
                 return surfaceData;
+            }
+
+            Light MyGetMainLight(float4 shadowCoord)
+            {
+                Light light = GetMainLight();
+
+                /// RealTimeShadowの計算 ///
+                half4 shadowParams = GetMainLightShadowParams();
+                half shadowStrength = shadowParams.x * _ShadowStrength;
+                ShadowSamplingData shadowSamplingData = GetMainLightShadowSamplingData();
+
+                half attenuation;
+                attenuation = SAMPLE_TEXTURE2D_SHADOW(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture,
+                                                      shadowCoord.xyz);
+                attenuation = SampleShadowmapFiltered(
+                    TEXTURE2D_SHADOW_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord,
+                    shadowSamplingData);;
+                attenuation = LerpWhiteTo(attenuation, shadowStrength);
+
+                half shadowAttenuation = BEYOND_SHADOW_FAR(shadowCoord) ? 1.0 : attenuation;
+                ///
+
+                light.shadowAttenuation = shadowAttenuation;
+
+                return light;
             }
 
             // 閾値マップ
@@ -261,6 +290,7 @@ Shader "Custom/CustomLitShader"
             {
                 SurfaceData surfaceData = InitializeSurfaceData(input);
                 InputData inputData = InitializeInputData(input, surfaceData.normalTS);
+                Light mainLight = MyGetMainLight(inputData.shadowCoord);
 
                 // URP v10+ バージョンでは、これを使用できます。
                 // half4 color = UniversalFragmentPBR(inputData, surfaceData);
@@ -273,6 +303,7 @@ Shader "Custom/CustomLitShader"
                                                    surfaceData.occlusion,
                                                    surfaceData.emission, surfaceData.alpha);
 
+                color.rgb = lerp(_ShadowColor.rgb, color, mainLight.shadowAttenuation);
                 color.rgb = MixFog(color.rgb, inputData.fogCoord);
 
                 // color.a = OutputAlpha(color.a);
@@ -441,6 +472,7 @@ Shader "Custom/CustomLitShader"
             {
                 float4 positionCS: SV_POSITION;
                 float4 positionSS : TEXCOORD0;
+                float3 normalWS : TEXCOORD1;
             };
 
             // 閾値マップ
@@ -476,7 +508,6 @@ Shader "Custom/CustomLitShader"
             {
                 float4 col = _OutLineColor;
 
-
                 // スクリーン座標
                 float2 screenPos = IN.positionSS.xy / IN.positionSS.w;
                 // 画面サイズを乗算して、ピクセル単位に
@@ -499,4 +530,7 @@ Shader "Custom/CustomLitShader"
             ENDHLSL
         }
     }
+
+    FallBack "Hidden/Universal Render Pipeline/FallbackError"
+    CustomEditor "CustomLitShaderGUI"
 }
