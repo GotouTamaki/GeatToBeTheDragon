@@ -6,7 +6,6 @@ Shader "Custom/CustomLitShader"
         _BaseColor ("Base Color", Color) = (255, 255, 255, 1)
         _ShadowColor ("Shadow Color", Color) = (0, 0, 0, 1)
         _ShadowStrength ("Shadow Strength", Range(0, 1)) = 1
-        _Smoothness ("Smoothness", Range(0, 1)) = 0.5
         _DitherLevel("Dither Level", Range(0, 16)) = 0
 
         [Toggle(_ALPHATEST_ON)] _EnableAlphaTest("Enable Alpha Cutoff", Float) = 0.0
@@ -16,9 +15,10 @@ Shader "Custom/CustomLitShader"
         _BumpMap ("Normal/Bump Texture", 2D) = "bump" {}
         _BumpScale ("Bump Scale", Float) = 1
 
-        [Toggle(_Metallic)] _EnableMetallic("Enable Metallic", Float) = 0.0
+        [Toggle(_METALLIC)] _EnableMetallic("Enable Metallic", Float) = 0.0
+        _MetallicGlossMap ("Metallic Gloss Map", 2D) = "black" {}
         _Metallic ("Metallic", Range(0, 1)) = 0.5
-        _MetallicGlossMap ("_Metallic Gloss Map", 2D) = "white" {}
+        _Smoothness ("Smoothness", Range(0, 1)) = 0.5
 
 
         [Toggle(_EMISSION)] _EnableEmission("Enable Emission", Float) = 0.0
@@ -26,7 +26,7 @@ Shader "Custom/CustomLitShader"
         [HDR] _EmissionColor ("Emission Color", Color) = (0, 0, 0, 0)
 
         [Toggle(_OUTLINE)] _EnableOutLine("Enable OutLine", Float) = 0.0
-        _OutLineColor ("OutLine Color", Color) = (0, 0, 0, 1)
+        [HDR] _OutLineColor ("OutLine Color", Color) = (0, 0, 0, 1)
         _OutlineWidth ("Outline Width", Range(0, 100)) = 0
     }
     SubShader
@@ -78,6 +78,7 @@ Shader "Custom/CustomLitShader"
             #pragma shader_feature _NORMALMAP
             #pragma shader_feature _ALPHATEST_ON
             #pragma shader_feature _ALPHAPREMULTIPLY_ON
+            #pragma shader_feature _METALLIC
             #pragma shader_feature _EMISSION
             #pragma shader_feature _METALLICSPECGLOSSMAP
             //#pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
@@ -249,13 +250,19 @@ Shader "Custom/CustomLitShader"
                 // 簡単にするために、メタリック/スペキュラー マップまたはオクルージョン マップはサポートしていません。
                 // その例については、https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl を参照してください。
 
-			    half4 glossmap = tex2D(_MetallicGlossMap, input.uv);
-                surfaceData.metallic = glossmap.r * _Metallic;
+                half4 glossmap = 0;
+
+                #ifdef _METALLIC
+			    glossmap = 1 - tex2D(_MetallicGlossMap, input.uv);
+                surfaceData.metallic =  glossmap.r * _Metallic;
+                #else
+                surfaceData.metallic = glossmap;
+                #endif
 
                 surfaceData.smoothness = _Smoothness;
                 surfaceData.normalTS = SampleNormal(input.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), _BumpScale);
                 surfaceData.emission = SampleEmission(input.uv, _EmissionColor.rgb,
-                                                      TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
+        TEXTURE2D_ARGS(_EmissionMap, sampler_EmissionMap));
 
                 surfaceData.occlusion = 1;
 
@@ -273,7 +280,7 @@ Shader "Custom/CustomLitShader"
 
                 half attenuation;
                 attenuation = SAMPLE_TEXTURE2D_SHADOW(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture,
-                                                    shadowCoord.xyz);
+                                              shadowCoord.xyz);
                 attenuation = SampleShadowmapFiltered(
                     TEXTURE2D_SHADOW_ARGS(_MainLightShadowmapTexture, sampler_MainLightShadowmapTexture), shadowCoord,
                     shadowSamplingData);;
@@ -309,10 +316,10 @@ Shader "Custom/CustomLitShader"
                 // ただし、他のバージョンでは、代わりにこれを使用する必要があります。
                 // SurfaceData 構造体の使用を完全に避けることもできますが、整理するのに役立ちます。
                 half4 color = UniversalFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic,
-                                           surfaceData.specular,
-                                           surfaceData.smoothness,
-                                           surfaceData.occlusion,
-                                           surfaceData.emission, surfaceData.alpha);
+                                     surfaceData.specular,
+                                     surfaceData.smoothness,
+                                     surfaceData.occlusion,
+                                     surfaceData.emission, surfaceData.alpha);
 
                 color.rgb = lerp(_ShadowColor.rgb, color, mainLight.shadowAttenuation);
                 color.rgb = MixFog(color.rgb, inputData.fogCoord);
@@ -543,5 +550,5 @@ Shader "Custom/CustomLitShader"
     }
 
     FallBack "Hidden/Universal Render Pipeline/FallbackError"
-    //CustomEditor "CustomLitShaderGUI"
+    CustomEditor "CustomLitShaderGUI"
 }

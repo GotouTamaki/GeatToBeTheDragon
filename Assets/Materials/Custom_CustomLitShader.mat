@@ -10,10 +10,12 @@ Material:
   m_Name: Custom_CustomLitShader
   m_Shader: {fileID: 4800000, guid: 033a58902b70a9e4989319e6c0799153, type: 3}
   m_ValidKeywords:
+  - _METALLIC
   - _NORMALMAP
   - _OUTLINE
   m_InvalidKeywords:
   - _ENABLE_OUTLINE
+  - _Metallic
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 7c3b6b161552b6140951e61e8fb53f41, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
@@ -80,6 +82,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SubMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - __MetallicMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - __MetallicSpecglossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - __MetallicSpecgrosMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -112,13 +126,14 @@ Material:
     - _EnableAlphaTest: 0
     - _EnableBumpMap: 1
     - _EnableEmission: 0
+    - _EnableMetallic: 1
     - _EnableOutLine: 1
     - _EnvironmentReflections: 1
     - _F0: 0.02
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Metallic: 0
+    - _Metallic: 0.5
     - _NoiseHight: 0.02
     - _OcclusionStrength: 1
     - _OutLineThickness: 16.7
@@ -140,10 +155,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.7433963, g: 0.7433963, b: 0.7433963, a: 1}
+    - _BaseColor: {r: 0.78113204, g: 0.78113204, b: 0.78113204, a: 1}
     - _Color: {r: 0.39215684, g: 0.39215684, b: 0.39215684, a: 1}
     - _CustomColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 4.3730116, g: 3.136663, b: 0.526593, a: 0}
+    - _EmissionColor: {r: 13.219163, g: 1.3454164, b: 0, a: 0}
     - _OutLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
