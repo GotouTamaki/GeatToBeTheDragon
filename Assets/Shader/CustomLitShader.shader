@@ -18,8 +18,14 @@ Shader "Custom/CustomLitShader"
         [Toggle(_METALLIC)] _EnableMetallic("Enable Metallic", Float) = 0.0
         _MetallicGlossMap ("Metallic Gloss Map", 2D) = "black" {}
         _Metallic ("Metallic", Range(0, 1)) = 0.5
+        
+        [Toggle(_SMOOTHNESS)] _EnableSmoothness("Enable Smoothness", Float) = 0.0
+        _SmoothnessMap ("Smoothness Map", 2D) = "white" {}
         _Smoothness ("Smoothness", Range(0, 1)) = 0.5
 
+        [Toggle(_ROUGHNESS)] _EnableRoughness("Enable Roughness", Float) = 0.0
+        _RoughnessMap ("RoughnessMap Map", 2D) = "white" {}
+        _Roughness ("Roughness", Range(0, 1)) = 0.5
 
         [Toggle(_EMISSION)] _EnableEmission("Enable Emission", Float) = 0.0
         _EmissionMap ("Emission Texture", 2D) = "white" {}
@@ -31,6 +37,8 @@ Shader "Custom/CustomLitShader"
     }
     SubShader
     {
+        //Cull Front
+        
         Tags
         {
             "RenderType"="Opaque" "RenderPipeline"="UniversalPipeline"
