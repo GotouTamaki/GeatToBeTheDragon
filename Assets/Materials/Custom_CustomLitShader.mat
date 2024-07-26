@@ -13,6 +13,7 @@ Material:
   - _METALLIC
   - _NORMALMAP
   - _OUTLINE
+  - _SMOOTHNESSTYPE_SMOOTHNESS
   m_InvalidKeywords:
   - _ENABLE_OUTLINE
   - _Metallic
@@ -54,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 6dd01fa0c8793d94381039e555feb991, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef598384cfb40dd47a672e4d2c508e76, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -74,6 +75,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RoughnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SmoothnessRoughnessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -128,6 +141,8 @@ Material:
     - _EnableEmission: 0
     - _EnableMetallic: 1
     - _EnableOutLine: 1
+    - _EnableRoughness: 0
+    - _EnableSmoothness: 0
     - _EnvironmentReflections: 1
     - _F0: 0.02
     - _GlossMapScale: 0
@@ -148,6 +163,7 @@ Material:
     - _ShadowStrength: 0
     - _Smoothness: 0.7
     - _SmoothnessTextureChannel: 0
+    - _SmoothnessType: 1
     - _SpecPower: 3
     - _SpecularHighlights: 1
     - _SrcBlend: 1
