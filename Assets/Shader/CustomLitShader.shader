@@ -52,13 +52,11 @@ Shader "Custom/CustomLitShader"
             float4 _EmissionColor;
             float _Metallic;
             float _Smoothness;
-            //float _Roughness;
             float _Cutoff;
             half _DitherLevel;
 
             sampler2D _MetallicGlossMap;
             sampler2D _SmoothnessRoughnessMap;
-            //sampler2D _RoughnessMap;
         CBUFFER_END
         ENDHLSL
 
@@ -86,8 +84,6 @@ Shader "Custom/CustomLitShader"
             #pragma shader_feature _ALPHATEST_ON
             #pragma shader_feature _ALPHAPREMULTIPLY_ON
             #pragma shader_feature _METALLIC
-            //#pragma shader_feature _SMOOTHNESS
-            //#pragma shader_feature _ROUGHNESS
             #pragma shader_feature _EMISSION
             #pragma shader_feature _METALLICSPECGLOSSMAP
             //#pragma shader_feature _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
@@ -339,10 +335,10 @@ Shader "Custom/CustomLitShader"
                 // ただし、他のバージョンでは、代わりにこれを使用する必要があります。
                 // SurfaceData 構造体の使用を完全に避けることもできますが、整理するのに役立ちます。
                 half4 color = UniversalFragmentPBR(inputData, surfaceData.albedo, surfaceData.metallic,
-                                           surfaceData.specular,
-                                           surfaceData.smoothness,
-                                           surfaceData.occlusion,
-                                           surfaceData.emission, surfaceData.alpha);
+                                                   surfaceData.specular,
+                                                   surfaceData.smoothness,
+                                                   surfaceData.occlusion,
+                                                   surfaceData.emission, surfaceData.alpha);
 
                 color.rgb = lerp(_ShadowColor.rgb, color, mainLight.shadowAttenuation);
                 color.rgb = MixFog(color.rgb, inputData.fogCoord);
