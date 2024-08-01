@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -66,26 +64,42 @@ public class AudioManager : MonoBehaviour
         _seAudioSource.PlayOneShot(data.audioClip);
     }
     
+    //TODO : 音量変更は応急処置的になっている
+    //       各データに設定された音量を活かしたい -> AudioMixer？
+    
     /// <summary>
     /// Masterの音量をセットします
     /// valueはSliderの初期設定である0～1の値を想定しています。
     /// </summary>
     /// <param name="value">Masterの音量</param>
-    public void SetMasterVolume(float value) => _masterVolume = Mathf.Clamp01(value);
+    public void SetMasterVolume(float value)
+    {
+        _masterVolume = Mathf.Clamp01(value);
+        _bgmAudioSource.volume = _bgmSoundData[0].volume * _bgmMasterVolume * _masterVolume;
+        _seAudioSource.volume = _bgmSoundData[0].volume * _seMasterVolume * _masterVolume;
+    }
 
     /// <summary>
     /// BGMの音量をセットします
     /// valueはSliderの初期設定である0～1の値を想定しています。
     /// </summary>
     /// <param name="value">BGMの音量</param>
-    public void SetBGMVolume(float value) => _bgmMasterVolume = Mathf.Clamp01(value);
+    public void SetBGMVolume(float value)
+    {
+        _bgmMasterVolume = Mathf.Clamp01(value);
+        _bgmAudioSource.volume = _bgmSoundData[0].volume * _bgmMasterVolume * _masterVolume;
+    }
 
     /// <summary>
     /// SEの音量をセットします
     /// valueはSliderの初期設定である0～1の値を想定しています。
     /// </summary>
     /// <param name="value">SEの音量</param>
-    public void SetSEVolume(float value) => _seMasterVolume = Mathf.Clamp01(value);
+    public void SetSEVolume(float value)
+    {
+        _seMasterVolume = Mathf.Clamp01(value);
+        _seAudioSource.volume = _bgmSoundData[0].volume * _seMasterVolume * _masterVolume;
+    }
 }
 
 [System.Serializable]
