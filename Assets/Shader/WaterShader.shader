@@ -175,7 +175,7 @@ Shader "Custom/WaterShader"
                 float NdotH = saturate(dot(input.normalWS, halfVector));
                 float spec = pow(NdotH, _SpecPower);
 
-                color += mainLight.color.rgb * spec * mainLight.distanceAttenuation;
+                //color += mainLight.color.rgb * spec * mainLight.distanceAttenuation;
 
                 half frenel = _F0 + (1.0 - _F0) * pow(1 - dot(normalize(input.viewDirWS), input.normalWS), 5);
                 color += frenel;
